@@ -103,6 +103,22 @@ class AdminController extends Controller
         }
         return redirect('/AdminGallery');
     }
+    public function addPhoto(Request $req){
+
+        foreach ($req->photo as $num => $val) {
+            $target_dir = "album/";
+            $target_file = $target_dir . date("mdYHis") .$num.'.'.pathinfo(basename($_FILES["photo"]["name"][$num]),PATHINFO_EXTENSION);
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $temp_name  = $_FILES['photo']['tmp_name'][$num]; 
+            move_uploaded_file($temp_name, $target_file);
+
+            DB::table('gallery_pics')->insert([
+                'gallery_id' => $req->id,
+                'picture' => $target_file
+            ]);
+        }
+        return redirect('/AdminGallery/'.$req->id);
+    }
 
     public function logout(){
         Auth::logout();

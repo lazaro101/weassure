@@ -11,12 +11,14 @@
 		</div>
 		<div class="row">
 			@foreach($var as $var)
-			<a href="/AdminGallery/{{$var->gallery_id}}" class="col-md-6">
+			<div class="col-md-6">
+        <a href="/AdminGallery/{{$var->gallery_id}}">
 			  	<div class="w3-card-4" style="width:50%">
 				    <img src="{{$var->thumbnail}}" alt="Norway" style="width:100%" class="img-thumbnail">
 				   	<h5>{{$var->gallery_name}}<br><small>Updated {{date_create($var->date)->format('F d, Y') }}</small> </h5>
   				</div>
-			</a>
+        </a>
+			</div>
 			@endforeach
 		</div>
 		
@@ -30,7 +32,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+        <h4 class="modal-title" id="myModalLabel">Add Album</h4>
       </div>
       <div class="modal-body">
 

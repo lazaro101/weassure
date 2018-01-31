@@ -14,8 +14,13 @@
 
         <h1>{{$alb->gallery_name}}</h1>
 
-        <!-- <p class="page-description text-center">Grid Layout With Zoom Effect</p> -->
-        
+        <!-- <p class="page-description text-center">Grid Layout With Zoom Effect</p>     -->
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" >Add Photo</button>
+            </div>
+        </div>
+
         <div class="tz-gallery">
 
             <div class="row">
@@ -31,6 +36,30 @@
         </div>
 
     </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/addPhoto" method="post" enctype="multipart/form-data">
+      {{csrf_field()}}
+      <input type="hidden" name="id" value="{{$alb->gallery_id}}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Photo/s</h4>
+      </div>
+      <div class="modal-body">
+
+        <label>Photo/s</label><div class="form-group"><input type="file" name="photo[]" class="form-control" multiple /></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-info btn-simple">Save</button>
+      </div>
+    </div>
+    </form>
+  </div>
 </div>
 @endsection
 
