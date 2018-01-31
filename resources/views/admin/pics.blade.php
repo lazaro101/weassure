@@ -26,8 +26,9 @@
             <div class="row">
                 @foreach($pics as $pic)
                 <div class="col-sm-6 col-md-4">
+                    <button class="btn btn-danger remove" style="position: absolute;z-index: 100;"><i class="fa fa-trash-o"></i></button>
                     <a class="lightbox" href="/{{$pic->picture}}">
-                        <img src="/{{$pic->picture}}" alt="Park">
+                        <img src="/{{$pic->picture}}" alt="Park" id="1">
                     </a>
                 </div>
                 @endforeach
@@ -67,5 +68,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
 <script>
     baguetteBox.run('.tz-gallery');
+    $(document).ready(function(){
+        $('.remove').click(function(){
+            alert($(this).closest('div').find('img').attr('src'));
+        });
+    });
 </script>
 @endsection
