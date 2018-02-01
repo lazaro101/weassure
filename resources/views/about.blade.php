@@ -136,20 +136,26 @@
 
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
     <script type="text/javascript">
-        // $(function() {
-        //     var offset = $("#sidebar").offset();
-        //     var topPadding = 15;
-        //     $(window).scroll(function() {
-        //         if ($(window).scrollTop() > offset.top) {
-        //             $("#sidebar").stop().animate({
-        //                 marginTop: $(window).scrollTop() - offset.top - 30
-        //             });
-        //         } else {
-        //             $("#sidebar").stop().animate({
-        //                 marginTop: 0
-        //             });
-        //         };
-        //     });
-        // });
+        $(function() {
+            var offset = $("#sidebar").offset();
+            var topPadding = 15;
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > offset.top) {
+                    if ($(window).scrollTop() > 3000) {
+                        $("#sidebar").stop().animate({
+                            marginTop: 0
+                        });
+                    } else {
+                        $("#sidebar").stop().animate({
+                            marginTop: $(window).scrollTop() - offset.top - 30
+                        });
+                    }
+                } else {
+                    $("#sidebar").stop().animate({
+                        marginTop: 0
+                    });
+                }; 
+            }); 
+        });
     </script>
 @endsection

@@ -28,7 +28,7 @@
                 <div class="col-sm-6 col-md-4">
                     <button class="btn btn-danger remove" style="position: absolute;z-index: 100;"><i class="fa fa-trash-o"></i></button>
                     <a class="lightbox" href="/{{$pic->picture}}">
-                        <img src="/{{$pic->picture}}" alt="Park" id="1">
+                        <img src="/{{$pic->picture}}" alt="Park">
                     </a>
                 </div>
                 @endforeach
@@ -69,8 +69,20 @@
 <script>
     baguetteBox.run('.tz-gallery');
     $(document).ready(function(){
-        $('.remove').click(function(){
-            alert($(this).closest('div').find('img').attr('src'));
+        $('.remove').click(function(){ 
+            var pic = $(this).closest('div').find('img').attr('src').replace(/\D/g,''); 
+            $.ajax({
+              url: '/delPhoto',
+              type: 'post',
+              dataType: 'json',
+              data: { pic : pic,
+                      _token: "{{ Session::token() }}", 
+              },
+              success:function(response){
+                // alert(response);
+              }
+            });
+            $(this).closest('div').remove();
         });
     });
 </script>

@@ -103,8 +103,26 @@ class AdminController extends Controller
         }
         return redirect('/AdminGallery');
     }
+    public function editGallery(Request $req){
+        DB::table('gallery')->where('gallery_id',$req->id)->update([
+            'gallery_name' => $req->name,
+            'date' => date_create('now')->format('Y-m-d'),
+        ]);
+        return redirect('/AdminGallery');
+    }
+    public function getGallery(Request $req){
+        $var = DB::table('gallery')->where('gallery_id',$req->id)->first();
+        return response()->json($var);
+    }
+    public function delGallery(Request $req){
+        DB::table('gallery')->where('gallery_id',$req->id)->update(['status' => 1]);
+        return redirect('/AdminGallery');
+    }
     public function addPhoto(Request $req){
 
+        DB::table('gallery')->where('gallery_id',$req->id)->update([
+            'date' => date_create('now')->format('Y-m-d'),
+        ]);
         foreach ($req->photo as $num => $val) {
             $target_dir = "album/";
             $target_file = $target_dir . date("mdYHis") .$num.'.'.pathinfo(basename($_FILES["photo"]["name"][$num]),PATHINFO_EXTENSION);
@@ -118,6 +136,10 @@ class AdminController extends Controller
             ]);
         }
         return redirect('/AdminGallery/'.$req->id);
+    }
+    public function delPhoto(Request $req){
+        DB::table('gallery_pics')->where('picture','LIKE','%'.$req->pic.'%')->delete();
+        return response()->json();
     }
 
     public function logout(){

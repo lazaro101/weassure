@@ -34,6 +34,10 @@ Route::post('/addPicachi','AdminController@addPicachi');
 Route::get('/AdminGallery','AdminController@AdminGallery');
 Route::get('/AdminGallery/{id}',['uses' => 'AdminController@AdminGalleryPics']);
 Route::post('/addGallery','AdminController@addGallery');
+Route::get('/getGallery','AdminController@getGallery');
+Route::post('delGallery','AdminController@delGallery');
+Route::post('editGallery','AdminController@editGallery');
 Route::post('/addPhoto','AdminController@addPhoto');
+Route::post('/delPhoto','AdminController@delPhoto');
 
 Route::get('/logout', 'AdminController@logout');

@@ -11,7 +11,9 @@
 <br>
 <h1 class="text-center">News<big>
 </h1><button type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-block btn-lg btn-fill btn-danger" style="width: 15%">Update</button></big><br>
-    <img src="@if(isset($pic1)){{$pic1->news_pic}}@endif" class="img-thumbnail" style="height: 500px"><br>    
+@if(isset($pic1))
+    <img src="{{$pic1->news_pic}}" class="img-thumbnail" style="height: 500px"><br>
+    @endif    
 </div>
 
 <div class="main">
@@ -19,7 +21,8 @@
 <h1 class="text-center">New Products</h1><big>
 <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-block btn-lg btn-fill btn-danger" style="width: 15%">
 Update</button></big><br>
-    <img src="@if(isset($pic2)){{$pic2->prod_pic}}@endif" class="img-thumbnail" style="height: 500px"><br>
+@if(isset($pic2))
+    <img src="{{$pic2->prod_pic}}" class="img-thumbnail" style="height: 500px"><br>@endif
 </div>
 
 <div class="main">
@@ -27,7 +30,9 @@ Update</button></big><br>
 <h1 class="text-center">Achiever of the month</h1><big>
 <button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-block btn-lg btn-fill btn-danger" style="width: 15%">
 Update</button></big><br>
-    <img src="@if(isset($pic3)){{$pic3->emp_pic}}@endif" class="img-thumbnail" style="height: 500px">
+@if(isset($pic3))
+    <img src="{{$pic3->emp_pic}}" class="img-thumbnail" style="height: 500px">
+    @endif
 </div>
 </center>
 </div><br><br>
